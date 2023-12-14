@@ -27,7 +27,7 @@ def upgrade() -> None:
         sa.Column("precio_compra", sa.Numeric(precision=10, scale=2), nullable=False),
         sa.Column("precio_venta", sa.Numeric(precision=10, scale=2), nullable=False),
         sa.Column("descripcion", sa.String(45),),
-        sa.Column('categories_id', sa.Integer, sa.ForeignKey('categories.id'), nullable=False),
+        sa.Column('categoria_id', sa.Integer, sa.ForeignKey('categorias.id'), nullable=False),
         sa.Column('created_at', sa.DateTime, default=datetime.now(), nullable=False),
         sa.Column('updated_at', sa.DateTime, default = datetime.now(), nullable=False)
     )
