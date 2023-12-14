@@ -1,9 +1,6 @@
 from tkinter import ttk
 from tkinter import *
 
-import sqlite3
-from typing import
-class Product: db_name = 'database.db' 
 
 def __init__(self, window):
         self.wind = window
@@ -40,8 +37,6 @@ def run_query (self, query, parameters = ()):
         result = cursor.execute(query, parameters)
         conn.commit()
     return result 
-
-
 
 
 
