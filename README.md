@@ -13,6 +13,8 @@ $ sudo apt install python3-tk
 
 # Python from pip
 $ pip install tk
+
+$ pip install -r requirements.txt
 ```
 
 # start app
