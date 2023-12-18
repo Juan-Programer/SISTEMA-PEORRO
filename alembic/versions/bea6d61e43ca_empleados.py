@@ -27,10 +27,10 @@ def upgrade() -> None:
         sa.Column('nombre', sa.String(45), nullable=False),
         sa.Column('apellido', sa.String(45), nullable=False),
         sa.Column('usuario', sa.String(50), nullable=False),
-        sa.Column('contraseña', sa.Integer(250), nullable=False),
+        sa.Column('contrasena', sa.String(250), nullable=False),
         sa.Column('created_at', sa.DateTime, default=datetime.now(), nullable=False),
         sa.Column('updated_at', sa.DateTime, default = datetime.now(), nullable=False)
-        )
+    )
     
 
 
