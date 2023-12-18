@@ -1,8 +1,8 @@
-"""empleado
+"""empleados
 
-Revision ID: 0818988399e7
-Revises: ee79414bedc8
-Create Date: 2023-12-14 17:17:27.757995
+Revision ID: bea6d61e43ca
+Revises: 
+Create Date: 2023-12-17 13:47:37.856233
 
 """
 from typing import Sequence, Union
@@ -13,8 +13,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '0818988399e7'
-down_revision: Union[str, None] = 'ee79414bedc8'
+revision: str = 'bea6d61e43ca'
+down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
@@ -26,6 +26,8 @@ def upgrade() -> None:
         sa.Column('cedula', sa.String(45), nullable=False),
         sa.Column('nombre', sa.String(45), nullable=False),
         sa.Column('apellido', sa.String(45), nullable=False),
+        sa.Column('usuario', sa.String(50), nullable=False),
+        sa.Column('contraseña', sa.Integer(250), nullable=False),
         sa.Column('created_at', sa.DateTime, default=datetime.now(), nullable=False),
         sa.Column('updated_at', sa.DateTime, default = datetime.now(), nullable=False)
         )
@@ -33,4 +35,4 @@ def upgrade() -> None:
 
 
 def downgrade() -> None:
-    op.drop_table("empleados")
+    op.drop_table("empleados"),
