@@ -3,16 +3,19 @@ from src.services.empleado_service import EmpleadoService
 class ConsoleApp():
 
 	def run(self):
-		username: str = input("ingrese su usuario: ")
-		password: str = input("ingresar contrasenia: ")
-		empleado_service: EmpleadoService = EmpleadoService()
-		user = empleado_service.login(username, password)
+		try:
 
-		if user == None:
-			print("La contraseña o usuario es incorrecta")
-		else:
-			print("ha iniciado sesion correctamente")
-			print(user)
+			username: str = input("ingrese su usuario: ")
+			password: str = input("ingresar contrasenia: ")
+			cedula: str = input("ingresar cedula: ")
+			nombre: str = input("ingresar nombre: ")
+			apellido: str = input("inpurt apellido")
+
+			empleado_service: EmpleadoService = EmpleadoService()
+			empleado_service.create(usuario=username, contrasena=password, cedula=cedula,nombre=nombre, apellido=apellido)
+		except ValueError as e:
+			print(e)
+			print("no se pudo crear el usuario")
 
 if __name__ == '__main__':
 	console: ConsoleApp = ConsoleApp()
