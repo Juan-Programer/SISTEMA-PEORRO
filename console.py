@@ -9,7 +9,7 @@ class ConsoleApp():
 			password: str = input("ingresar contrasenia: ")
 			cedula: str = input("ingresar cedula: ")
 			nombre: str = input("ingresar nombre: ")
-			apellido: str = input("inpurt apellido")
+			apellido: str = input("ingresar apellido:")
 
 			empleado_service: EmpleadoService = EmpleadoService()
 			empleado_service.create(usuario=username, contrasena=password, cedula=cedula,nombre=nombre, apellido=apellido)
