@@ -1,7 +1,7 @@
 """empleados
 
 Revision ID: bea6d61e43ca
-Revises: 
+Revises:
 Create Date: 2023-12-17 13:47:37.856233
 
 """
@@ -31,7 +31,7 @@ def upgrade() -> None:
         sa.Column('created_at', sa.DateTime, default=datetime.now(), nullable=False),
         sa.Column('updated_at', sa.DateTime, default = datetime.now(), nullable=False)
     )
-    
+
 
 
 def downgrade() -> None:

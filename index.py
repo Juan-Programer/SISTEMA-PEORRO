@@ -1,7 +1,8 @@
-from tkinter import ttk
 from tkinter import *
+from tkinter import ttk
+from src.screen.login_screen import LoginScreen
 
-
+"""
 def __init__(self, window):
         self.wind = window
         self.wind.title('CONTROL DE VENTAS Y INVENTARIO')
@@ -29,21 +30,21 @@ def __init__(self, window):
         self.tree.heading('#0', text = 'Nombre', anchor = CENTER)
         self.tree.heading('#1', text = 'Precio', anchor = CENTER)
 
-        self (get_productos) 
-        
+        self (get_productos)
+
 def run_query (self, query, parameters = ()):
     with sqlite3.connect(self.db_name) as conn:
         cursor = conn.cursor()
         result = cursor.execute(query, parameters)
         conn.commit()
-    return result 
+    return result
 
-
+"""
 
 if __name__ == '__main__':
-    window = Tk()
-    application = Product (window)
-    window.mainloop()   
+	window = Tk()
+	login: LoginScreen = LoginScreen(window)
+	window.mainloop()
 
 
 

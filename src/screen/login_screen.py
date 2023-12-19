@@ -1,23 +1,26 @@
-from tkinter import Tk,Label,Button,Entry,Frame,messagebox, mainloop
-from PIL import Image, ImageTk
+# from PIL import Image, ImageTk
+from src.screen.base_screen import BaseScreen
+from src.models.empleado_model import EmpleadoModel
+from src.services.empleado_service import EmpleadoService
+from tkinter import Tk,Label,Button,Entry,Frame,messagebox
 
-class Login:
-    def __init__(self):
-        self.ventana = Tk()
-        self.ventana.geometry("400x700")
-        self.ventana.title("Mi primer login")
+
+class LoginScreen(BaseScreen):
+    def render(self):
+        self.window.geometry("400x700")
+        self.window.title("Mi primer login")
 
         fondo = "#88FFB4"
 
-    #--------------------------------------------
-    #--------------------parde de frame----------
-    #--------------------------------------------
+    	#--------------------------------------------
+    	#--------------------parde de frame----------
+    	#--------------------------------------------
 
-        self.frame_superior = Frame(self.ventana)
+        self.frame_superior = Frame(self.window)
         self.frame_superior.configure(bg=fondo)
         self.frame_superior.pack(fill="both", expand = True)
 
-        self.frame_inferior = Frame(self.ventana)
+        self.frame_inferior = Frame(self.window)
         self.frame_inferior.configure(bg=fondo)
         self.frame_inferior.pack(fill="both", expand = True)
 
@@ -33,17 +36,17 @@ class Login:
                             font=("Calisto MT", 36, "bold" ),
                             bg=fondo)
         self.titulo.pack(side="top", pady=20)
-        
-        # 
+
+        #
         #
         #
 
-        self.img = Image.open("imagenes/usuario.png")
-        self.omg = self.img.resize((150,120))
-        self.render = ImageTk.PhotoImage(self.img)
-        self.fondo = Label(self.frame_superior, image = self.render, bg = fondo)
+        # self.img = Image.open("imagenes/usuario.png")
+        # self.omg = self.img.resize((150,120))
+        # self.render = ImageTk.PhotoImage(self.img)
+        self.fondo = Label(self.frame_superior, bg = fondo)
         self.fondo.pack(expand=True, fill="both", side="top")
-        
+
         #
         #
         #
@@ -83,16 +86,14 @@ class Login:
                                       command=self.entrar)
         self.boton_ingresar.grid(row=2, column=0, columnspan=2, pady=35)
 
-     
-        mainloop()
 
     def entrar(self):
         nombre = self.entry_usuario.get()
         contra = self.entry_contraseña.get()
+        empleado_service: EmpleadoService = EmpleadoService()
+        user: EmpleadoModel = empleado_service.login(nombre, contra)
 
-        if nombre == "Yered" and contra == "1234":
+        if user != None:
             messagebox.showinfo("Acceso Correcto", "Has Ingresado")
         else:
-            messagebox.showinfo("Acceso Incorrecto", "Algun dato es erroneo")    
-
-Login()
+            messagebox.showinfo("Acceso Incorrecto", "La contraseña y el usuario no coinciden")
