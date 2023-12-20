@@ -1,18 +1,14 @@
-from src.services.empleado_service import EmpleadoService
+from src.services.categoria_service import CategoriaService
 
 class ConsoleApp():
 
 	def run(self):
 		try:
+			id: str = input("Ingrese el identificador de formato(ID): ")
+			
+			categoria_service: CategoriaService = CategoriaService()
+			categoria_service.eliminar( categoria_id =id)
 
-			username: str = input("ingrese su usuario: ")
-			password: str = input("ingresar contrasenia: ")
-			cedula: str = input("ingresar cedula: ")
-			nombre: str = input("ingresar nombre: ")
-			apellido: str = input("ingresar apellido:")
-
-			empleado_service: EmpleadoService = EmpleadoService()
-			empleado_service.create(usuario=username, contrasena=password, cedula=cedula,nombre=nombre, apellido=apellido)
 		except ValueError as e:
 			print(e)
 			print("no se pudo crear el usuario")
