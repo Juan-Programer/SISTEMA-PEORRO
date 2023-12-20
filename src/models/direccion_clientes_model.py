@@ -3,6 +3,7 @@ from datetime import datetime
 from src.config.model_base import Base, ModelBase
 
 class Direccion_clientesModel(Base, ModelBase):
+    __tablename:str = "direccion_clientes"
     calle: sa.Column = sa.Column(sa.String(45), nullable=False)
     sector: sa.Column = sa.Column(sa.String(45), nullable=False)
     comuna: sa.Column = sa.Column(sa.String(45), nullable=False)
