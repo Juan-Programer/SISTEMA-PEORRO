@@ -7,7 +7,7 @@ class EmitesModel(Base, ModelBase):
     cantidad: sa.Column = sa.Column(sa.Integer, nollable = False)
     cantidad_emitida: sa.Column = sa.Column(sa.Integer, nollable = False)
     producto_id: sa.Column = sa.Column(sa.Integer, sa.ForeignKey('productos.id'), nullable=False)
-    venta_id:sa.Column = sa.Column(sa.Integer, sa.ForeignKey('productos.id'), nullable=False)
+    venta_id:sa.Column = sa.Column(sa.Integer, sa.ForeignKey('ventas.id'), nullable=False)
     created_at: sa.Column = sa.Column(sa.DateTime, default=datetime.now(), nullable=False)
     updated_at: sa.Column = sa.Column( sa.DateTime, default=datetime.now(), nullable=False)
     

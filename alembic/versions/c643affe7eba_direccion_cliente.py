@@ -22,11 +22,11 @@ depends_on: Union[str, Sequence[str], None] = None
 def upgrade() -> None:
     op.create_table(
         'direccion_clientes',
-        sa.Column('id', sa.Integer,autoincrement=True, primary_key=True ),
         sa.Column('calle', sa.String, nullable=False),
         sa.Column('comuna', sa.String, nullable=False),
         sa.Column('numero', sa.String, nullable=False),
         sa.Column('ciudad', sa.String, nullable=False),
+        sa.Column('cliente_id', sa.Integer, sa.ForeignKey('clientes.id'), nullable=False),
         sa.Column('created_at', sa.DateTime, default=datetime.now(), nullable=False),
         sa.Column('updated_at', sa.DateTime, default = datetime.now(), nullable=False),
 
