@@ -1,13 +1,26 @@
-from src.services.categoria_service import CategoriaService
+from unicodedata import numeric
+from sqlalchemy import desc
+from src.services.producto_service import ProductoService
 
 class ConsoleApp():
 
 	def run(self):
 		try:
-			id: str = input("Ingrese el identificador de formato(ID): ")
+			nombre: str = input("Ingrese el nombre del producto: ")
+			precio_compra: float= input("Ingrese el precio de compra del producto: ")
+			precio_venta:  float= input("Ingrese el precio de venta del producto: ")
+			descripcion: str = input("Ingrese la descripcion del producto")
+			producto_inventario:str=int (input("Ingrese el numero de productos en el inventario"))
+			categoria_id: str = int(input("Ingrese la categoria.id "))
+
 			
-			categoria_service: CategoriaService = CategoriaService()
-			categoria_service.eliminar( categoria_id =id)
+			producto_service: ProductoService = ProductoService()
+			producto_service.create( nombre=nombre, 
+						     precio_compra=precio_compra,
+							 precio_venta=precio_venta, 
+							 descripcion=descripcion, 
+							 producto_inventario=producto_inventario,
+						     categoria_id=categoria_id)
 
 		except ValueError as e:
 			print(e)
