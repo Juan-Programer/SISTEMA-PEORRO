@@ -51,24 +51,17 @@ class ProductoService():
             session.close()
 
             #Editar un producto utilizando su nombre.
-    def edit(self, producto_nombre: str, 
+    def edit(self, producto_id: int, 
                producto_nuevo_nombre:str,
                nuevo_precio_compra:float,
                nuevo_precio_venta:float,
                nuevo_producto_inventario:int,
                nueva_descripcion: str,
                categoria_id: int) -> ProductosModel:
-        session: SessionDatabase = SessionDatabase()
+        session: SessionDatabase = SessionDatabase() 
         
         try:
-            producto = session.query(ProductosModel).filter_by(nombre= producto_nuevo_nombre,
-                                                               precio_compra =nuevo_precio_compra, 
-                                                               precio_venta = nuevo_precio_venta,
-                                                               descripcion = nueva_descripcion,
-                                                               producto_inventario = nuevo_producto_inventario,
-                                                               categoria_id = categoria_id).first()
-            if not producto:
-                raise ValueError("El producto no existe")
+           
             
             category = session.query(CategoriaModel)\
                 .filter(CategoriaModel.id == categoria_id)\
@@ -77,17 +70,24 @@ class ProductoService():
             if not category:
                 raise ValueError("la categoria seleccionada no existe")
             
+            producto = session.query(ProductosModel)\
+                .filter(ProductosModel.id == producto_id)\
+                .first()
+        
+            if not producto:
+                raise ValueError("Este producto no se encuentra registrado")
+        
             #Verificar si ya existe el producto
-            existing_producto = session.query(ProductosModel).filter_by(func.upper(ProductosModel.nombre)==func.upper(producto_nuevo_nombre)).first()
-            if existing_producto:
-                raise ValueError("Ya existe este producto dentro del sistema de inventario")
+            existing_producto = session.query(ProductosModel).filter_by(id= producto_id).first()
+            if existing_producto and existing_producto.id != producto_id:
+                raise ValueError("Ya existe un producto con este nombre en el sistema")
             
+        
             producto.nombre = producto_nuevo_nombre
             producto.precio_compra = nuevo_precio_compra
             producto.precio_venta = nuevo_precio_venta
             producto.descripcion = nueva_descripcion
             producto.inventario = nuevo_producto_inventario
-            producto.categoria_id = categoria_id
             producto.updated_at = datetime.now ()
 
             session.add(producto)

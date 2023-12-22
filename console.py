@@ -5,6 +5,7 @@ class ConsoleApp():
 
 	def run(self):
 		try:
+			producto_id: int = int (input("Ingrese el identificador de formato"))
 			producto_nuevo_nombre: str = input("Ingrese el nombre del producto: ")
 			nuevo_precio_compra: float= float(input("Ingrese el precio de compra del producto: "))
 			nuevo_precio_venta:  float= float(input("Ingrese el precio de venta del producto: "))
@@ -16,6 +17,8 @@ class ConsoleApp():
 			producto_service: ProductoService = ProductoService()
 
 			producto_service.edit(
+				
+				producto_id= producto_id,
 				producto_nuevo_nombre= producto_nuevo_nombre,
 				nuevo_precio_compra=nuevo_precio_compra,
 				nuevo_precio_venta=nuevo_precio_venta, 
