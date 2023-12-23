@@ -13,7 +13,6 @@ class ConsoleApp():
 			nuevo_producto_inventario: int = int (input("Ingrese el numero de productos en el inventario: "))
 			categoria_id: int = int(input("Ingrese la categoria.id: "))
 
-			
 			producto_service: ProductoService = ProductoService()
 
 			producto_service.edit(
