@@ -17,7 +17,6 @@ class ConsoleApp():
 			producto_service: ProductoService = ProductoService()
 
 			producto_service.edit(
-				
 				producto_id= producto_id,
 				producto_nuevo_nombre= producto_nuevo_nombre,
 				nuevo_precio_compra=nuevo_precio_compra,

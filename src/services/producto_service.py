@@ -51,13 +51,17 @@ class ProductoService():
             session.close()
 
             #Editar un producto utilizando su nombre.
-    def edit(self, producto_id: int, 
-               producto_nuevo_nombre:str,
-               nuevo_precio_compra:float,
-               nuevo_precio_venta:float,
-               nuevo_producto_inventario:int,
-               nueva_descripcion: str,
-               categoria_id: int) -> ProductosModel:
+    def edit(
+        self, 
+        producto_id: int, 
+        producto_nuevo_nombre:str,
+        nuevo_precio_compra:float,
+        nuevo_precio_venta:float,
+        nuevo_producto_inventario:int,
+        nueva_descripcion: str,
+        categoria_id: int
+    ) -> ProductosModel:
+
         session: SessionDatabase = SessionDatabase() 
         
         try:
@@ -78,8 +82,12 @@ class ProductoService():
                 raise ValueError("Este producto no se encuentra registrado")
         
             #Verificar si ya existe el producto
-            existing_producto = session.query(ProductosModel).filter_by(id= producto_id).first()
-            if existing_producto and existing_producto.id != producto_id:
+            existing_producto = session.query(ProductosModel)\
+                .filter( ProductosModel.id != producto_id)\
+                .filter(func.upper(ProductosModel.nombre) == func.upper(producto_nuevo_nombre))\
+                .first()
+
+            if existing_producto:
                 raise ValueError("Ya existe un producto con este nombre en el sistema")
             
         
